@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoTools", "src\MongoTool
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Payments", "src\Hotel.Payments\Hotel.Payments.csproj", "{788CFF70-90D5-41DA-BCA5-4BCB8AE8258E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Guest", "src\Hotel.Guest\Hotel.Guest.csproj", "{8A9D9660-DBC1-48B6-B082-24FB17BC7221}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{788CFF70-90D5-41DA-BCA5-4BCB8AE8258E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{788CFF70-90D5-41DA-BCA5-4BCB8AE8258E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{788CFF70-90D5-41DA-BCA5-4BCB8AE8258E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A9D9660-DBC1-48B6-B082-24FB17BC7221}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A9D9660-DBC1-48B6-B082-24FB17BC7221}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A9D9660-DBC1-48B6-B082-24FB17BC7221}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A9D9660-DBC1-48B6-B082-24FB17BC7221}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
