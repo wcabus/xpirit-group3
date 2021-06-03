@@ -13,12 +13,20 @@ namespace Hotel.Bookings.Domain.Bookings {
             RoomId          roomId,
             StayPeriod      period,
             Money           price,
-            DateTimeOffset  bookedAt,
             IsRoomAvailable isRoomAvailable
         ) {
             EnsureDoesntExist();
             await EnsureRoomAvailable(roomId, period, isRoomAvailable);
 
+            ChangeState(State with {
+                Id = bookingId,
+                RoomId = roomId,
+                GuestId = guestId,
+                Period = period,
+                Price = price,
+                Outstanding = price,
+                Paid = false
+            });
         }
 
         public void RecordPayment(
