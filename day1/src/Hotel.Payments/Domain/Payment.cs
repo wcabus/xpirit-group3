@@ -8,7 +8,10 @@ namespace Hotel.Payments.Domain {
         }
     }
 
-    public record PaymentState : AggregateState<PaymentState, PaymentId>;
+    public record PaymentState : AggregateState<PaymentState, PaymentId> {
+        public string BookingId { get; init; }
+        public float  Amount    { get; init; }
+    }
 
     public record PaymentId(string Value) : AggregateId(Value);
 }

@@ -32,7 +32,7 @@ namespace Hotel.Bookings {
             services.AddSingleton<BookingsCommandService>();
 
             // Domain services
-            services.AddSingleton<Services.IsRoomAvailable>(((id, period) => new ValueTask<bool>(true)));
+            services.AddSingleton<Services.IsRoomAvailable>((id,   period) => new ValueTask<bool>(true));
             services.AddSingleton<Services.ConvertCurrency>((from, currency) => new Money(from.Amount * 2, currency));
 
             // API
