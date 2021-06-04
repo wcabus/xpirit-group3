@@ -23,8 +23,4 @@
       <Folder Include="Acls" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Compile Remove="Application\Bookings\MyBookingsProjection.cs" />
-    </ItemGroup>
-
 </Project>
