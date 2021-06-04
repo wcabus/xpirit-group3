@@ -20,8 +20,8 @@ namespace Hotel.Bookings.Domain.Bookings {
                     Price = new Money {Amount       = booked.BookingPrice, Currency      = booked.Currency},
                     Outstanding = new Money {Amount = booked.OutstandingAmount, Currency = booked.Currency}
                 },
-                V1.PaymentRecorded paymentMade => this with {
-                    Outstanding = new Money(paymentMade.Outstanding, paymentMade.Currency)
+                V1.PaymentRecorded e => this with {
+                    Outstanding = new Money { Amount = e.Outstanding, Currency = e.Currency }
                 },
                 V1.BookingFullyPaid => this with
                 {

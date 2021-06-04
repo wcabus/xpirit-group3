@@ -7,7 +7,9 @@
 
     <ItemGroup>
         <PackageReference Include="Eventuous.EventStoreDB" Version="0.4.4" />
+        <PackageReference Include="Eventuous.Producers.EventStoreDB" Version="0.4.4" />
         <PackageReference Include="Eventuous.Projections.MongoDB" Version="0.4.4" />
+        <PackageReference Include="Eventuous.Shovel" Version="0.4.4" />
         <PackageReference Include="Eventuous.Subscriptions.EventStoreDB" Version="0.4.4" />
         <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
@@ -18,9 +20,11 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Acls" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Compile Remove="Application\Bookings\MyBookingsProjection.cs" />
-      <Compile Remove="Application\Bookings\BookingStateProjection.cs" />
-      <Compile Remove="Application\ProjectionSubscription.cs" />
     </ItemGroup>
 
 </Project>

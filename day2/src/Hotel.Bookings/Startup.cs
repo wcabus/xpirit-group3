@@ -33,6 +33,7 @@ namespace Hotel.Bookings {
             services.AddEventStoreClient(Configuration["EventStore:ConnectionString"]);
             services.AddSingleton<IEventStore, EsdbEventStore>();
             services.AddSingleton<IAggregateStore, AggregateStore>();
+            services.AddSingleton<ICheckpointStore, MongoCheckpointStore>();
             services.AddSingleton(DefaultEventSerializer.Instance);
 
             // Application
@@ -41,6 +42,11 @@ namespace Hotel.Bookings {
             // Domain services
             services.AddSingleton<Services.IsRoomAvailable>((id, period) => new ValueTask<bool>(true));
             services.AddSingleton<Services.ConvertCurrency>((from, currency) => new Money(from.Amount * 2, currency));
+            
+            // Projections
+            services.AddSubscription<ProjectionSubscription>()
+                .AddEventHandler<BookingStateProjection>();
+            
             
             // API
             services.AddControllers();

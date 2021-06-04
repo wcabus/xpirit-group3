@@ -1,5 +1,4 @@
 using System;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Eventuous;
 using static Hotel.Bookings.Domain.Bookings.BookingEvents;
@@ -36,7 +35,7 @@ namespace Hotel.Bookings.Domain.Bookings {
                     bookedAt
                 )
             );
-
+       
             MarkFullyPaidIfNecessary(bookedAt);
         }
 
@@ -72,9 +71,7 @@ namespace Hotel.Bookings.Domain.Bookings {
                 return;
             }
 
-            Apply(
-                new V1.BookingFullyPaid(when)
-            );
+            Apply(new V1.BookingFullyPaid(State.Id, when));
         }
 
         static async Task EnsureRoomAvailable(RoomId roomId, StayPeriod period, IsRoomAvailable isRoomAvailable) {

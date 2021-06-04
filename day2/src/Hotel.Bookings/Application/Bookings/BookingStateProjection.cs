@@ -24,7 +24,6 @@ namespace Hotel.Bookings.Application.Bookings {
                         .Set(x => x.CheckOutDate, e.CheckOutDate)
                         .Set(x => x.BookingPrice, e.BookingPrice)
                         .Set(x => x.Outstanding, e.OutstandingAmount)
-                        .Set(x => x.Paid, e.Paid)
                 ),
                 _ => NoOp
             };
@@ -38,9 +37,9 @@ namespace Hotel.Bookings.Application.Bookings {
         public string         RoomId       { get; init; }
         public DateTimeOffset CheckInDate  { get; init; }
         public DateTimeOffset CheckOutDate { get; init; }
-        public float          BookingPrice { get; init; }
-        public float          PaidAmount   { get; init; }
-        public float          Outstanding  { get; init; }
+        public decimal        BookingPrice { get; init; }
+        public decimal        PaidAmount   { get; init; }
+        public decimal        Outstanding  { get; init; }
         public bool           Paid         { get; init; }
     }
 }
