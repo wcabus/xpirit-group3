@@ -18,12 +18,14 @@ namespace Hotel.Bookings.Domain.Bookings {
                     Period = new StayPeriod(booked.CheckInDate, booked.CheckOutDate),
                     GuestId = booked.GuestId,
                     Price = new Money {Amount       = booked.BookingPrice, Currency      = booked.Currency},
-                    Outstanding = new Money {Amount = booked.OutstandingAmount, Currency = booked.Currency},
-                    Paid = booked.Paid
+                    Outstanding = new Money {Amount = booked.OutstandingAmount, Currency = booked.Currency}
                 },
                 V1.PaymentRecorded paymentMade => this with {
-                    Outstanding = new Money(paymentMade.Outstanding, paymentMade.Currency),
-                    Paid = paymentMade.Outstanding <= 0
+                    Outstanding = new Money(paymentMade.Outstanding, paymentMade.Currency)
+                },
+                V1.BookingFullyPaid => this with
+                {
+                    Paid = true
                 },
                 _ => this
             };

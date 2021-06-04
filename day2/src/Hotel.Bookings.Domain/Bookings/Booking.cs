@@ -1,4 +1,5 @@
 using System;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Eventuous;
 using static Hotel.Bookings.Domain.Bookings.BookingEvents;
@@ -32,10 +33,11 @@ namespace Hotel.Bookings.Domain.Bookings {
                     prepaid.Amount,
                     outstanding.Amount,
                     price.Currency,
-                    outstanding.Amount == 0,
                     bookedAt
                 )
             );
+
+            MarkFullyPaidIfNecessary(bookedAt);
         }
 
         public void RecordPayment(
@@ -50,7 +52,7 @@ namespace Hotel.Bookings.Domain.Bookings {
 
             Apply(
                 new V1.PaymentRecorded(
-                    GetId(),
+                    State.Id,
                     paid.Amount,
                     outstanding.Amount,
                     paid.Currency,
@@ -58,6 +60,20 @@ namespace Hotel.Bookings.Domain.Bookings {
                     paidBy,
                     paidAt
                 )
+            );
+
+            MarkFullyPaidIfNecessary(paidAt);
+        }
+
+        private void MarkFullyPaidIfNecessary(DateTimeOffset when)
+        {
+            if (State.Outstanding > 0)
+            {
+                return;
+            }
+
+            Apply(
+                new V1.BookingFullyPaid(when)
             );
         }
 
