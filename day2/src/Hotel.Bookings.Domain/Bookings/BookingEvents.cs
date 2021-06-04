@@ -14,7 +14,6 @@ namespace Hotel.Bookings.Domain.Bookings {
                 float          PrepaidAmount,
                 float          OutstandingAmount,
                 string         Currency,
-                bool           Paid,
                 DateTimeOffset BookingDate
             );
 
@@ -22,11 +21,14 @@ namespace Hotel.Bookings.Domain.Bookings {
                 string BookingId, float PaidAmount, float Outstanding, string Currency, string PaymentId, string PaidBy,
                 DateTimeOffset PaidAt
             );
+
+            public record BookingFullyPaid(string BookingId, DateTimeOffset FullyPaidAt);
         }
 
         public static void MapEvents() {
             TypeMap.AddType<V1.RoomBooked>("V1.RoomBooked");
             TypeMap.AddType<V1.PaymentRecorded>("V1.PaymentRecorded");
+            TypeMap.AddType<V1.BookingFullyPaid>("V1.BookingFullyPaid");
         }
     }
 }

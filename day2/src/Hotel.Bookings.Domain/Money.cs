@@ -6,7 +6,7 @@ namespace Hotel.Bookings.Domain {
         public float  Amount   { get; internal init; }
         public string Currency { get; internal init; }
 
-        static readonly string[] SupportedCurrencies = {"USD", "GPB"};
+        static readonly string[] SupportedCurrencies = {"USD", "GPB", "EUR"};
 
         internal Money() { }
 

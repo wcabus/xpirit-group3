@@ -24,7 +24,6 @@ namespace Hotel.Bookings.Application.Bookings {
                         .Set(x => x.CheckOutDate, e.CheckOutDate)
                         .Set(x => x.BookingPrice, e.BookingPrice)
                         .Set(x => x.Outstanding, e.OutstandingAmount)
-                        .Set(x => x.Paid, e.Paid)
                 ),
                 _ => NoOp
             };

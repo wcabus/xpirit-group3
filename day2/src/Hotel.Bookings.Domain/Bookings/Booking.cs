@@ -32,10 +32,11 @@ namespace Hotel.Bookings.Domain.Bookings {
                     prepaid.Amount,
                     outstanding.Amount,
                     price.Currency,
-                    outstanding.Amount == 0,
                     bookedAt
                 )
             );
+            
+            MarkFullyPaidIfNecessary(bookedAt);
         }
 
         public void RecordPayment(
@@ -46,6 +47,27 @@ namespace Hotel.Bookings.Domain.Bookings {
         ) {
             EnsureExists();
 
+            var outstanding = State.Outstanding - paid;
+
+            Apply(
+                new V1.PaymentRecorded(
+                    State.Id,
+                    paid.Amount,
+                    outstanding.Amount,
+                    paid.Currency,
+                    paymentId,
+                    paidBy,
+                    paidAt
+                )
+            );
+            
+            MarkFullyPaidIfNecessary(paidAt);
+        }
+
+        void MarkFullyPaidIfNecessary(DateTimeOffset when) {
+            if (State.Outstanding.Amount != 0) return;
+
+            Apply(new V1.BookingFullyPaid(State.Id, when));
         }
 
         static async Task EnsureRoomAvailable(RoomId roomId, StayPeriod period, IsRoomAvailable isRoomAvailable) {
