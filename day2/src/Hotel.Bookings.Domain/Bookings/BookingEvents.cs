@@ -22,7 +22,7 @@ namespace Hotel.Bookings.Domain.Bookings {
                 DateTimeOffset PaidAt
             );
 
-            public record BookingFullyPaid(string BookingId, DateTimeOffset FullyPaidAt);
+            public record BookingFullyPaid(string BookingId, string GuestId, DateTimeOffset FullyPaidAt);
         }
 
         public static void MapEvents() {

@@ -71,7 +71,7 @@ namespace Hotel.Bookings.Domain.Bookings {
                 return;
             }
 
-            Apply(new V1.BookingFullyPaid(State.Id, when));
+            Apply(new V1.BookingFullyPaid(State.Id, State.GuestId, when));
         }
 
         static async Task EnsureRoomAvailable(RoomId roomId, StayPeriod period, IsRoomAvailable isRoomAvailable) {

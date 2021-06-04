@@ -21,6 +21,11 @@ namespace Hotel.Bookings.Application.Bookings {
                         new MyBookings.Booking(e.BookingId, e.CheckInDate, e.CheckOutDate, e.BookingPrice)
                     )
                 ),
+                V1.BookingFullyPaid e => UpdateOperationTask(
+                    filter => filter.Eq(x => x.Id, e.GuestId) & 
+                              filter.ElemMatch(x => x.Bookings, Builders<MyBookings.Booking>.Filter.Eq(x => x.BookingId, e.BookingId)),
+                    update => update.Set(x => x.Bookings[-1].Paid, true)
+                ),
                 _ => NoOp
             };
         }
@@ -31,6 +36,6 @@ namespace Hotel.Bookings.Application.Bookings {
 
         public List<Booking> Bookings { get; init; } = new();
 
-        public record Booking(string BookingId, DateTimeOffset CheckInDate, DateTimeOffset CheckOutDate, float Price);
+        public record Booking(string BookingId, DateTimeOffset CheckInDate, DateTimeOffset CheckOutDate, decimal Price, bool Paid = false);
     }
 }
