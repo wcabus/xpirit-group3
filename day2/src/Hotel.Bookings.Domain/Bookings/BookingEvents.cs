@@ -10,16 +10,16 @@ namespace Hotel.Bookings.Domain.Bookings {
                 string         RoomId,
                 DateTimeOffset CheckInDate,
                 DateTimeOffset CheckOutDate,
-                float          BookingPrice,
-                float          PrepaidAmount,
-                float          OutstandingAmount,
+                decimal        BookingPrice,
+                decimal        PrepaidAmount,
+                decimal        OutstandingAmount,
                 string         Currency,
                 bool           Paid,
                 DateTimeOffset BookingDate
             );
 
             public record PaymentRecorded(
-                string BookingId, float PaidAmount, float Outstanding, string Currency, string PaymentId, string PaidBy,
+                string BookingId, decimal PaidAmount, decimal Outstanding, string Currency, string PaymentId, string PaidBy,
                 DateTimeOffset PaidAt
             );
         }

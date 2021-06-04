@@ -8,12 +8,18 @@ namespace Hotel.Bookings.Application.Bookings {
             string         RoomId,
             DateTimeOffset CheckInDate,
             DateTimeOffset CheckOutDate,
-            float          BookingPrice,
-            float          PrepaidAmount,
+            decimal        BookingPrice,
+            decimal        PrepaidAmount,
             string         Currency,
             DateTimeOffset BookingDate
         );
 
-        public record RecordPayment(string BookingId, float PaidAmount, string Currency, string PaymentId, string PaidBy);
+        public record RecordPayment(
+            string BookingId,
+            decimal PaidAmount,
+            string Currency,
+            string PaymentId,
+            string PaidBy
+        );
     }
 }

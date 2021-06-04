@@ -3,14 +3,14 @@ using Eventuous;
 
 namespace Hotel.Bookings.Domain {
     public record Money {
-        public float  Amount   { get; internal init; }
+        public decimal  Amount   { get; internal init; }
         public string Currency { get; internal init; }
 
         static readonly string[] SupportedCurrencies = {"USD", "GPB"};
 
         internal Money() { }
 
-        public Money(float amount, string currency) {
+        public Money(decimal amount, string currency) {
             if (!SupportedCurrencies.Contains(currency)) throw new DomainException($"Unsupported currency: {currency}");
 
             Amount   = amount;
@@ -25,6 +25,6 @@ namespace Hotel.Bookings.Domain {
             return new Money(one.Amount - another.Amount, one.Currency);
         }
 
-        public static implicit operator double(Money money) => money.Amount;
+        public static implicit operator decimal(Money money) => money.Amount;
     }
 }

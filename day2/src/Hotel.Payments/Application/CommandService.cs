@@ -18,6 +18,6 @@ namespace Hotel.Payments.Application {
     }
 
     public static class PaymentCommands {
-        public record RecordPayment(string PaymentId, string BookingId, float Amount, string Method, string Provider);
+        public record RecordPayment(string PaymentId, string BookingId, decimal Amount, string Method, string Provider);
     }
 }

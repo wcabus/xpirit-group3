@@ -46,6 +46,19 @@ namespace Hotel.Bookings.Domain.Bookings {
         ) {
             EnsureExists();
 
+            var outstanding = State.Outstanding - paid;
+
+            Apply(
+                new V1.PaymentRecorded(
+                    GetId(),
+                    paid.Amount,
+                    outstanding.Amount,
+                    paid.Currency,
+                    paymentId,
+                    paidBy,
+                    paidAt
+                )
+            );
         }
 
         static async Task EnsureRoomAvailable(RoomId roomId, StayPeriod period, IsRoomAvailable isRoomAvailable) {
