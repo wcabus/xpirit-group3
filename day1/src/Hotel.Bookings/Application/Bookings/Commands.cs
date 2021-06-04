@@ -8,7 +8,7 @@ namespace Hotel.Bookings.Application.Bookings {
             string         RoomId,
             DateTimeOffset CheckInDate,
             DateTimeOffset CheckOutDate,
-            float          BookingPrice,
+            decimal        BookingPrice,
             string         Currency,
             DateTimeOffset BookingDate
         );
